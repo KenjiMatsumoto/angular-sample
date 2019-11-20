@@ -13,11 +13,16 @@
                     <div class="product-id">ID</div>
                     <div class="product-name">名前</div>
                     <div class="product-price">価格</div>
+                    <div class="product-shokan">値段への所感</div>
                 </div>
                 <div class="product-line" *ngFor="let product of products">
                     <div class="product-id">{{ product.id }}</div>
                     <div class="product-name">{{ product.name }}</div>
                     <div class="product-price">{{ product.price }}</div>
+                    <div class="product-shokan" [ngSwitch]="product.price">
+                        <span *ngSwitchCase="4000">高いね</span>
+                        <span *ngSwitchDefault>安いね</span>
+                    </div>
                 </div>
             </div>
         </ng-template>

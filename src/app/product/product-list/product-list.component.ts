@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
     selector: 'app-product-list',
@@ -11,33 +12,18 @@ export class ProductListComponent implements OnInit {
     id2: number;
 
     products: Product[] = null;
-    constructor() {}
+    constructor(private productService: ProductService) {}
 
     ngOnInit() {
         this.id = 15;
         this.id2 = 10;
 
         setTimeout(() => {
-            this.products = [
-                new Product(
-                    1,
-                    'テスト商品',
-                    3800,
-                    'テストで追加した商品です。'
-                ),
-                new Product(
-                    2,
-                    'AngularDesignPattern',
-                    4000,
-                    'Angularでデザインパターンを極めるための指南書'
-                ),
-                new Product(
-                    3,
-                    'angularQuest',
-                    640,
-                    'Angularを極めるため旅にでる少年、その先に待つものとは…。'
-                ),
-            ];
+            this.productService
+                .getProductList()
+                .subscribe((products: Product[]) => {
+                    this.products = products;
+                });
         }, 1000);
     }
 }
