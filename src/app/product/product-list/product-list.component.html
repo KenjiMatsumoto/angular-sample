@@ -1,1 +1,11 @@
-<p>product-list works!</p>
+<p>product-list works!{{ id }}</p>
+
+<p>(Linkにそのまま文字列受け渡すボタン)</p>
+<div class="button" routerLink="/products/{{ id }}">
+    商品詳細へ
+</div>
+
+<p>(Linkを配列で受け渡す処理)</p>
+<div class="button" [routerLink]="['/products', id2]">
+    商品詳細へ
+</div>
