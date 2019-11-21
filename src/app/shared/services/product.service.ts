@@ -3,7 +3,7 @@ import { Product } from '../models/product';
 import { of, Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class ProductService {
     products = [
@@ -19,9 +19,9 @@ export class ProductService {
             'angularQuest',
             640,
             'Angularを極めるため旅にでる少年、その先に待つものとは…。'
-        ),
+        )
     ];
-    constructor() {}
+    constructor() { }
 
     public getProduct(id: number): Observable<any> {
         return of(this.products[id - 1]);
@@ -29,5 +29,11 @@ export class ProductService {
 
     public getProductList(): Observable<Product[]> {
         return of(this.products);
+    }
+
+    update(product: Product): void {
+        // <= 追加
+        const index = this.products.findIndex((prd: Product) => prd.id === product.id);
+        this.products[index] = product;
     }
 }
