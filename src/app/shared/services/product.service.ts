@@ -23,7 +23,11 @@ export class ProductService {
     ];
     constructor() {}
 
-    getProductList(): Observable<Product[]> {
+    public getProduct(id: number): Observable<any> {
+        return of(this.products[id - 1]);
+    }
+
+    public getProductList(): Observable<Product[]> {
         return of(this.products);
     }
 }
