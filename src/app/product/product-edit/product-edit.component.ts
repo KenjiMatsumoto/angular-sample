@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/product';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-edit',
@@ -19,7 +19,7 @@ export class ProductEditComponent implements OnInit {
   productForm = this.fb.group({
     id: [''],
     name: [''],
-    price: [''],
+    price: ['', Validators.min(100)],
     description: ['']
   });
   product: Product;
@@ -39,9 +39,14 @@ export class ProductEditComponent implements OnInit {
     console.log(this.productForm.controls.id.value);
   }
 
+  get name() { return this.productForm.get('name'); }
+  get price() { return this.productForm.get('price'); }
+
   saveProduct(): void {
-    const { id, name, price, description } = this.productForm.getRawValue(); // <= 追加
-    this.productService.update(new Product(id, name, price, description)); // <= 追加
-    this.router.navigate(['/products', this.productForm.controls.id.value]); // <= 変更
+    if (this.productForm.valid) {
+      const { id, name, price, description } = this.productForm.getRawValue(); // <= 追加
+      this.productService.update(new Product(id, name, price, description)); // <= 追加
+      this.router.navigate(['/products', this.productForm.controls.id.value]); // <= 変更
+    }
   }
 }
