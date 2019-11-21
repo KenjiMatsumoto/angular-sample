@@ -11,3 +11,10 @@ export class Product {
         this.description = description;
     }
 }
+
+export enum ProductLabel {
+    id = 'ID',
+    name = '名前',
+    price = '金額',
+    description = '詳細',
+}

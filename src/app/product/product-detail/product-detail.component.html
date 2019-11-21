@@ -28,9 +28,9 @@
         商品詳細(ProductClassのプロパティをMapに入れ替えてそれを表示)
     </div>
     <div class="product-detail-container">
-        <div class="param-line" *ngFor="let item of productMap | keyvalue">
-            <div class="label">{{ item.key }}</div>
-            <div class="value">{{ item.value }}</div>
+        <div class="param-line" *ngFor="let item of keyOrder">
+            <div class="label">{{ item }}</div>
+            <div class="value">{{ productMap.get(item) }}</div>
         </div>
     </div>
     <div class="footer">

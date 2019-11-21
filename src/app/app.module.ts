@@ -5,18 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { ProductService } from './shared/services/product.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent,
-    ProductDetailComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, ProductListComponent, ProductDetailComponent],
+    imports: [BrowserModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
