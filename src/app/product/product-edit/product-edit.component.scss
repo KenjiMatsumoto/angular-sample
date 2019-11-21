@@ -11,22 +11,31 @@
     font-size: 18px;
   }
 
-  .product-detail-container {
-    padding-left: 48px;
+  .edit-form {
+    padding: 16px 48px;
     border: 1px solid #D9DBDE;
     border-radius: 4px;
     background-color: #FFFFFF;
 
-    .param-line {
+    .edit-line {
       display: flex;
-      padding: 16px 8px;
+      align-items: center;
+      padding: 16px 0;
+      width: 100%;
 
-      &:nth-child(n+2) {
-        border-top: 1px solid #D9DBDE;
+      label {
+        width: 15%;
+        font-size: 16px;
+        font-weight: 600;
       }
 
-      .label {
-        width: 100px;
+      input {
+        border: 1px solid #BDBDBD;
+        border-radius: 4px;
+        padding: 0 8px;
+        width: 560px;
+        height: 40px;
+        font-size: 14px;
       }
     }
   }
@@ -34,7 +43,7 @@
   .footer {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    padding: 24px 0;
 
     .button {
       margin: 0 20px;

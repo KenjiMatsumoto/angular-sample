@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/shared/services/product.service';
 
+class ProductListElement extends Product {
+    hovered: boolean;
+}
+
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.scss'],
+    styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
     public id: number;
@@ -18,13 +22,22 @@ export class ProductListComponent implements OnInit {
     ngOnInit() {
         this.id = 15;
         this.id2 = 10;
-
-        setTimeout(() => {
-            this.productService
-                .getProductList()
-                .subscribe((products: Product[]) => {
-                    this.products = products;
+        this.productService
+            .getProductList()
+            .subscribe((products: Product[]) => {
+                this.products = products.map((product: Product) => {
+                    return {
+                        ...product,
+                        hoverd: false
+                    };
                 });
-        }, 1000);
+            });
+    }
+
+    hovered(product: ProductListElement): void {
+        product.hovered = true;
+    }
+    unhovered(product: ProductListElement): void {
+        product.hovered = false;
     }
 }
