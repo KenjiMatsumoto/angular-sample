@@ -8,11 +8,19 @@
       </div>
       <div class="edit-line">
         <label>名前</label>
-        <input type="text" formControlName="name" required />
+        <input type="text" formControlName="name" required maxlength="50" />
+        <div class="alert" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors.required">入力してください</div>
+          <div *ngIf="name.errors.maxlength">50文字以内で入力してください</div>
+        </div>
       </div>
       <div class="edit-line">
         <label>価格</label>
         <input type="number" formControlName="price" />
+        <div class="alert" *ngIf="price.invalid && (price.dirty || price.touched)">
+          <div *ngIf="price.errors.required">入力してください</div>
+          <div *ngIf="price.errors.min">100円以上で入力してください</div>
+        </div>
       </div>
       <div class="edit-line">
         <label>説明</label>
@@ -21,11 +29,10 @@
     </div>
     <div class="footer">
       <span class="button white" [routerLink]="['/products', productForm.controls.id.value]">キャンセル</span>
-      <button class="button black">
+      <button class="button black" [class.disabled]="productForm.invalid">
         保存
       </button>
     </div>
-    <p>Form value: {{ productForm.value | json }}</p>
   </form>
 
 </div>
